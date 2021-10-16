@@ -22,11 +22,13 @@ public class Main extends Application {
         Scene theScene=new Scene(pane,600,400,true);
         primaryStage.setScene(theScene);
 
-        Image spriteSheet = new Image("src/heros.png");
+        Image spriteSheet = new Image("img/heros.png");
         ImageView sprite = new ImageView(spriteSheet);
         sprite.setViewport(new Rectangle2D(20,0,65,100));
         sprite.setX(200);
         sprite.setY(300);
+        root.getChildren().add(sprite);
+
 
 
         primaryStage.show();
