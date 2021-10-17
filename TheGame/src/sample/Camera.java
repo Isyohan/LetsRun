@@ -21,7 +21,7 @@ public class Camera {
         return y;
     }
 
-    public void update(long time){
+    public void update(double t){
 
     }
 

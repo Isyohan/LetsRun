@@ -34,11 +34,15 @@ public class GameScene extends Scene {
         this.hero=new Hero(100,200);
         pane.getChildren().add(this.hero.getImageView());
 
+        final long startNanoTime = System.nanoTime();
+
         AnimationTimer timer=new AnimationTimer() {
             @Override
             public void handle(long time) {
-                cam.update(time);
-                hero.update(time);
+                double t = (time - startNanoTime) / 1000000000.0;
+
+                cam.update(t);
+                hero.update(t);
                 //System.out.println(time);
 
             }
