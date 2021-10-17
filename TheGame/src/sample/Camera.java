@@ -21,6 +21,10 @@ public class Camera {
         return y;
     }
 
+    public void update(long time){
+
+    }
+
     @Override
     public String toString() {
         return this.x+","+this.y;

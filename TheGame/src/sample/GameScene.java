@@ -34,7 +34,23 @@ public class GameScene extends Scene {
         this.hero=new Hero(100,200);
         pane.getChildren().add(this.hero.getImageView());
 
+        AnimationTimer timer=new AnimationTimer() {
+            @Override
+            public void handle(long time) {
+                cam.update(time);
+                hero.update(time);
+                //System.out.println(time);
+
+            }
+
+        };
+        timer.start();
 
 
+
+    }
+
+    public void update(long time){
+        hero.update(time);
     }
 }

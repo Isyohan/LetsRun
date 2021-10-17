@@ -32,4 +32,9 @@ public abstract class AnimatedThing {
     public ImageView getImageView() {
         return imageView;
     }
+    public void update(long time){
+        //this.imageView.setViewport(new Rectangle2D(offset,0,200,200));
+        System.out.println(time%indexMax);
+        index++;
+    }
 }
