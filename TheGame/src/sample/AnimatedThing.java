@@ -18,8 +18,6 @@ public abstract class AnimatedThing {
 
     public AnimatedThing(String fileName,double x,double y,Point2D windowSize,int indexMax,double duration,int offset){
         this.imageView=new ImageView(new Image(fileName));
-        this.x=x;
-        this.y=y;
         this.windowSize=windowSize;
         this.indexMax=indexMax;
         this.duration=duration;
@@ -36,6 +34,14 @@ public abstract class AnimatedThing {
         //this.imageView.setViewport(new Rectangle2D(offset,0,200,200));
         index=(int) ((t%(indexMax*duration))/duration);
         this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
-        System.out.println(index);
+        //System.out.println(index);
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 }

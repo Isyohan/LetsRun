@@ -17,17 +17,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("Hello Worlds !!!");
+        primaryStage.setTitle("The game");
         Group root=new Group();
         Pane pane=new Pane(root);
-        Camera cam=new Camera(100,30);
-        GameScene gameScene=new GameScene(pane,600,400,true,cam);
+        Camera cam=new Camera(200,100);
+        GameScene gameScene=new GameScene(pane,400,200,true,cam);
         primaryStage.setScene(gameScene);
-
-
-
-
-
 
         primaryStage.show();
     }

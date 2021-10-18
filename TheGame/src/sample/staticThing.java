@@ -21,4 +21,8 @@ public class staticThing {
     public ImageView getImageView() {
         return imageView;
     }
+
+    public void update(double t){
+        this.imageView.setX(this.imageView.getX()-1);
+    }
 }
