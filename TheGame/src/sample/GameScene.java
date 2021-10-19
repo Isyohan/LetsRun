@@ -40,7 +40,7 @@ public class GameScene extends Scene {
             pane.getChildren().add(lifeslist[i]);
         }
 
-        this.hero=new Hero(100,250);
+        this.hero=new Hero(this.camera.getX(),this.camera.getY());
         pane.getChildren().add(this.hero.getImageView());
 
         final long startNanoTime = System.nanoTime();
@@ -51,7 +51,10 @@ public class GameScene extends Scene {
                 double t = (time - startNanoTime) / 1000000000.0;
 
                 cam.update(t);
-                hero.update(t);
+                hero.update(t,cam);
+
+
+
 
             }
 
@@ -62,7 +65,7 @@ public class GameScene extends Scene {
 
     }
 
-    public void update(long time){
-        hero.update(time);
+    public void update(double t,Camera camera){
+        hero.update(t,camera);
     }
 }

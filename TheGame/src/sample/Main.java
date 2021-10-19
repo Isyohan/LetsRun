@@ -20,8 +20,8 @@ public class Main extends Application {
         primaryStage.setTitle("The game");
         Group root=new Group();
         Pane pane=new Pane(root);
-        Camera cam=new Camera(200,100);
-        GameScene gameScene=new GameScene(pane,400,200,true,cam);
+        Camera cam=new Camera(200,150);
+        GameScene gameScene=new GameScene(pane,500,200,true,cam);
         primaryStage.setScene(gameScene);
 
         primaryStage.show();

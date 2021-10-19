@@ -22,9 +22,7 @@ public class Camera {
     }
 
     public void update(double t){
-        //System.out.println(index);
-
-
+        x++;
 
     }
 

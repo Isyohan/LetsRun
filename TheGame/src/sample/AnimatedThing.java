@@ -30,11 +30,13 @@ public abstract class AnimatedThing {
     public ImageView getImageView() {
         return imageView;
     }
-    public void update(double t){
+    public void update(double t,Camera camera){
         //this.imageView.setViewport(new Rectangle2D(offset,0,200,200));
         index=(int) ((t%(indexMax*duration))/duration);
         this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
         //System.out.println(index);
+        this.imageView.setX(camera.getX());
+        this.imageView.setY(camera.getY()+100);
     }
 
     public double getX() {
