@@ -22,8 +22,4 @@ public class staticThing {
         return imageView;
     }
 
-    public void update(double t,Camera camera){
-        this.imageView.setX(this.imageView.getX());
-        this.imageView.setY(this.imageView.getY());
-    }
 }

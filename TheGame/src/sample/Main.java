@@ -20,11 +20,34 @@ public class Main extends Application {
         primaryStage.setTitle("The game");
         Group root=new Group();
         Pane pane=new Pane(root);
-        Camera cam=new Camera(200,150);
-        GameScene gameScene=new GameScene(pane,500,200,true,cam);
+
+        Camera cam=new Camera(100,200);
+        Hero hero=new Hero(300,100);
+
+        GameScene gameScene=new GameScene(pane,500,200,true,cam,hero);
+
+
         primaryStage.setScene(gameScene);
 
         primaryStage.show();
+
+        final long startNanoTime = System.nanoTime();
+
+
+        AnimationTimer timer=new AnimationTimer() {
+            @Override
+            public void handle(long time) {
+                double t = (time - startNanoTime) / 1000000000.0;
+
+                hero.update(t);
+                cam.update(t,hero);
+                gameScene.update(t);
+                //System.out.println(cam.getX());
+
+            }
+
+        };timer.start();
+
     }
 
 

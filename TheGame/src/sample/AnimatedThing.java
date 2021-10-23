@@ -6,14 +6,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class AnimatedThing {
-    private double x,y;
+    protected double x,y;
+
     private ImageView imageView;
-    private int attitute;
+    private Integer attitute;
+
+
 
     private int index;
     private int indexMax;
     private double duration;
-    private Point2D windowSize;
+    protected Point2D windowSize;
     private int offset;
 
     public AnimatedThing(String fileName,double x,double y,Point2D windowSize,int indexMax,double duration,int offset){
@@ -23,20 +26,24 @@ public abstract class AnimatedThing {
         this.duration=duration;
         this.offset=offset;
 
-        this.imageView.setViewport(new Rectangle2D(this.x,this.y,this.windowSize.getX(),this.windowSize.getY()));
+        this.imageView.setViewport(new Rectangle2D(0,0,this.windowSize.getX(),this.windowSize.getY()));
+        this.x=x;
+        this.y=y;
+        this.imageView.setX(x);
+        this.imageView.setY(y);
 
     }
 
     public ImageView getImageView() {
         return imageView;
     }
-    public void update(double t,Camera camera){
-        //this.imageView.setViewport(new Rectangle2D(offset,0,200,200));
+    public void update(double t){
         index=(int) ((t%(indexMax*duration))/duration);
         this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
-        //System.out.println(index);
-        this.imageView.setX(camera.getX());
-        this.imageView.setY(camera.getY()+100);
+
+
+
+
     }
 
     public double getX() {

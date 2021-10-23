@@ -14,7 +14,7 @@ public class GameScene extends Scene {
     staticThing left,right;
     Hero hero;
 
-    public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam) {
+    public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam,Hero hero) {
         super(pane,v,v1,b);
         this.camera=cam;
 
@@ -39,33 +39,38 @@ public class GameScene extends Scene {
             lifeslist[i].setViewport(new Rectangle2D(0,0,48,48));
             pane.getChildren().add(lifeslist[i]);
         }
-
-        this.hero=new Hero(this.camera.getX(),this.camera.getY());
+        this.hero=hero;
         pane.getChildren().add(this.hero.getImageView());
 
-        final long startNanoTime = System.nanoTime();
-
-        AnimationTimer timer=new AnimationTimer() {
-            @Override
-            public void handle(long time) {
-                double t = (time - startNanoTime) / 1000000000.0;
-
-                cam.update(t);
-                hero.update(t,cam);
-
-
-
-
-            }
-
-        };
-        timer.start();
+        this.setOnMouseClicked(event -> {
+            hero.jump();
+            System.out.println("jump ?");
+        });
 
 
 
     }
 
-    public void update(double t,Camera camera){
-        hero.update(t,camera);
+    public void update(double t){
+
+
+        right.getImageView().setX(800-camera.getX());
+        right.getImageView().setY(-camera.getY());
+        left.getImageView().setX(-camera.getX());
+        left.getImageView().setY(-camera.getY());
+
+        hero.getImageView().setX(hero.getX()-camera.getX());
+        hero.getImageView().setY(hero.getY()-camera.getY());
+
+
+
+
+
+        camera.update(t,hero);
+        hero.update(t);
+
+
+
+
     }
 }
