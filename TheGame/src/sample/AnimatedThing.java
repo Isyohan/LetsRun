@@ -44,6 +44,7 @@ public abstract class AnimatedThing {
 
 
 
+
     }
 
     public double getX() {

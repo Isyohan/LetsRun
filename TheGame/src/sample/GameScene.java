@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 
 public class GameScene extends Scene {
     int numberOfLives=3;
+    int rep=1;
     Camera camera;
     staticThing left,right;
     Hero hero;
@@ -52,12 +53,21 @@ public class GameScene extends Scene {
     }
 
     public void update(double t){
-
-
-        right.getImageView().setX(800-camera.getX());
         right.getImageView().setY(-camera.getY());
-        left.getImageView().setX(-camera.getX());
         left.getImageView().setY(-camera.getY());
+        if(camera.getX()>800*rep) {
+            rep+=1;
+        }
+        if (rep % 2 == 1) {
+            left.getImageView().setX(800 * (rep-1) - camera.getX());
+            right.getImageView().setX(800 * (rep) - camera.getX());
+
+        }
+        else{
+            right.getImageView().setX(800 * (rep-1) - camera.getX());
+            left.getImageView().setX(800 * (rep) - camera.getX());
+        }
+
 
         hero.getImageView().setX(hero.getX()-camera.getX());
         hero.getImageView().setY(hero.getY()-camera.getY());

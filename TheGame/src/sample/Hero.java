@@ -33,7 +33,7 @@ public class Hero extends AnimatedThing{
         if (y>150+windowSize.getY()){
             y=150+windowSize.getY();
         }
-        v_x=1;
+        v_x=5;
         v_y=0;
         x+=v_x;
         setForces(0,0);
