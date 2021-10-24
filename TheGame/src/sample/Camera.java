@@ -14,9 +14,9 @@ public class Camera {
 
     private double v_y;
 
-    private final double k=0.3;
+    private final double k=1;
     private final double m=70;
-    private final double f=3;
+    private final double f=10;
 
     public Camera(int x,int y){
         this.x=x;

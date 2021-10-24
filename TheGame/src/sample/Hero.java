@@ -23,7 +23,7 @@ public class Hero extends AnimatedThing{
     }
     public void jump(){
         if (y>=150+windowSize.getY()){
-            f_y+=100;
+            f_y+=125;
         }
     }
     public void speed_var(double var){
