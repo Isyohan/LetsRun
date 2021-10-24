@@ -18,7 +18,6 @@ public class GameScene extends Scene {
     Camera camera;
     staticThing left,right;
     Hero hero;
-    Foe foe;
     ArrayList<Foe> Foes;
     private final double InitialSpeed=1;
 
@@ -48,10 +47,10 @@ public class GameScene extends Scene {
             pane.getChildren().add(lifeslist[i]);
         }
         Foes = new ArrayList<>();
-        Foes.add(new Foe(50,50));
-        Foes.add(new Foe(150,50));
+        Foes.add(new Foe(1000,300));
+        Foes.add(new Foe(600,300));
         for(Foe foe :Foes){
-            //pane.getChildren().add(foe.getImageView());
+            pane.getChildren().add(foe.getImageView());
         }
 
 
@@ -59,24 +58,19 @@ public class GameScene extends Scene {
         this.hero.setSpeedx(InitialSpeed);
         pane.getChildren().add(this.hero.getImageView());
 
-        this.setOnMouseClicked(event -> {
-            hero.jump();
-        });
-        this.setOnKeyPressed(new EventHandler<>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                String key=keyEvent.getCode().toString();
-                if (key.equals("SPACE") || key.equals("Z")){
-                    hero.jump();
-                }
-                if(key.equals("D")){
-                    hero.speed_var(2);
-                }
-                if (key.equals("Q")){
-                    hero.speed_var(-2);
-                }
-
+        this.setOnMouseClicked(event -> hero.jump());
+        this.setOnKeyPressed(keyEvent -> {
+            String key=keyEvent.getCode().toString();
+            if (key.equals("SPACE") || key.equals("Z")){
+                hero.jump();
             }
+            if(key.equals("D")){
+                hero.speed_var(2);
+            }
+            if (key.equals("Q")){
+                hero.speed_var(-2);
+            }
+
         });
 
 
@@ -86,6 +80,8 @@ public class GameScene extends Scene {
     public void update(double t){
         right.getImageView().setY(-camera.getY());
         left.getImageView().setY(-camera.getY());
+
+
         if(camera.getX()>800*rep) {
             rep+=1;
         }
@@ -102,6 +98,11 @@ public class GameScene extends Scene {
 
         hero.getImageView().setX(hero.getX()-camera.getX());
         hero.getImageView().setY(hero.getY()-camera.getY());
+
+        for(Foe foe:Foes){
+            foe.getImageView().setX(foe.getX()-camera.getX());
+            foe.getImageView().setY(foe.getY()-camera.getY());
+        }
 
 
 

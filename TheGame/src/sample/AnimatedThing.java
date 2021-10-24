@@ -12,6 +12,8 @@ public abstract class AnimatedThing {
     protected ImageView imageView;
     protected Attitude attitute;
 
+    protected Rectangle2D hitbox;
+
 
 
     protected int index;
