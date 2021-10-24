@@ -27,7 +27,7 @@ public class Hero extends AnimatedThing{
         }
     }
     public void speed_var(double var){
-        if (v_x+var>0) {
+        if (v_x+var>=0) {
             v_x += var;
         }
     }
@@ -46,6 +46,9 @@ public class Hero extends AnimatedThing{
         else{
             attitute=Attitude.RUNNING;
         }
+        if (v_x==0){
+            attitute=Attitude.IDLE;
+        }
     }
 
 
@@ -56,17 +59,18 @@ public class Hero extends AnimatedThing{
         updateAttitude();
 
         //a_y=(g-f_y-v_y/f)/m;
-        a_y=g-f_y/m;
-        v_y+=a_y;
-        y+=v_y;
-        if (y>150+windowSize.getY()){
-            if (v_y>0){
-                v_y=0;
+        a_y = g - f_y / m;
+        v_y += a_y;
+        y += v_y;
+        if (y > 150 + windowSize.getY()) {
+            if (v_y > 0) {
+                v_y = 0;
             }
-            y=150+windowSize.getY();
+            y = 150 + windowSize.getY();
         }
 
-        x+=v_x;
-        setForces(0,0);
+        x += v_x;
+
+        setForces(0, 0);
     }
 }

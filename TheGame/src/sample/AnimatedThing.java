@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class AnimatedThing {
-    enum Attitude{JUMPING_UP,JUMPING_DOWN,RUNNING}
+    enum Attitude{JUMPING_UP,JUMPING_DOWN,RUNNING,IDLE}
     protected double x,y;
 
     protected ImageView imageView;
@@ -48,6 +48,8 @@ public abstract class AnimatedThing {
             this.imageView.setViewport(new Rectangle2D(offset,160,windowSize.getX()+offset,windowSize.getY()));
         }else if(attitute==Attitude.JUMPING_DOWN){
             this.imageView.setViewport(new Rectangle2D(95,160,windowSize.getX()+offset,windowSize.getY()));
+        }else if(attitute==Attitude.IDLE){
+            this.imageView.setViewport(new Rectangle2D(0,0,windowSize.getX()+offset,windowSize.getY()));
         }
     }
 

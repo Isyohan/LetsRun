@@ -65,10 +65,10 @@ public class GameScene extends Scene {
                 hero.jump();
             }
             if(key.equals("D")){
-                hero.speed_var(2);
+                hero.speed_var(1);
             }
             if (key.equals("Q")){
-                hero.speed_var(-2);
+                hero.speed_var(-1);
             }
 
         });
