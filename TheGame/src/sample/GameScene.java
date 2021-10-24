@@ -46,6 +46,9 @@ public class GameScene extends Scene {
         this.setOnMouseClicked(event -> {
             hero.jump();
         });
+        this.setOnKeyPressed(keyEvent -> {
+            hero.jump();
+        });
 
 
 
