@@ -45,7 +45,6 @@ public class GameScene extends Scene {
 
         this.setOnMouseClicked(event -> {
             hero.jump();
-            System.out.println("jump ?");
         });
 
 

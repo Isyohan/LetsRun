@@ -43,19 +43,10 @@ public abstract class AnimatedThing {
         if(attitute==Attitude.RUNNING){
             this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
         }else if (attitute==Attitude.JUMPING_UP){
-            //this.imageView.setViewport(new Rectangle2D(0,150,75,100));
             this.imageView.setViewport(new Rectangle2D(offset,160,windowSize.getX()+offset,windowSize.getY()));
-
         }else if(attitute==Attitude.JUMPING_DOWN){
-            //this.imageView.setViewport(new Rectangle2D(75,150,75,100));
             this.imageView.setViewport(new Rectangle2D(95,160,windowSize.getX()+offset,windowSize.getY()));
         }
-        //this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
-
-
-
-
-
     }
 
     public double getX() {

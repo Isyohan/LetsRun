@@ -57,9 +57,6 @@ public class Hero extends AnimatedThing{
             }
             y=150+windowSize.getY();
         }
-        //System.out.print(v_y);
-        //v_y=0;
-        System.out.print("\t"+v_y+"\n");
 
         v_x=5;
         x+=v_x;
