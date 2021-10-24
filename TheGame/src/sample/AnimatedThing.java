@@ -6,18 +6,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class AnimatedThing {
+    enum Attitude{JUMPING_UP,JUMPING_DOWN,RUNNING}
     protected double x,y;
 
-    private ImageView imageView;
-    private Integer attitute;
+    protected ImageView imageView;
+    protected Attitude attitute;
 
 
 
-    private int index;
-    private int indexMax;
-    private double duration;
+    protected int index;
+    protected int indexMax;
+    protected double duration;
     protected Point2D windowSize;
-    private int offset;
+    protected int offset;
 
     public AnimatedThing(String fileName,double x,double y,Point2D windowSize,int indexMax,double duration,int offset){
         this.imageView=new ImageView(new Image(fileName));
@@ -39,7 +40,17 @@ public abstract class AnimatedThing {
     }
     public void update(double t){
         index=(int) ((t%(indexMax*duration))/duration);
-        this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
+        if(attitute==Attitude.RUNNING){
+            this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
+        }else if (attitute==Attitude.JUMPING_UP){
+            //this.imageView.setViewport(new Rectangle2D(0,150,75,100));
+            this.imageView.setViewport(new Rectangle2D(offset,160,windowSize.getX()+offset,windowSize.getY()));
+
+        }else if(attitute==Attitude.JUMPING_DOWN){
+            //this.imageView.setViewport(new Rectangle2D(75,150,75,100));
+            this.imageView.setViewport(new Rectangle2D(95,160,windowSize.getX()+offset,windowSize.getY()));
+        }
+        //this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
 
 
 
@@ -54,4 +65,6 @@ public abstract class AnimatedThing {
     public double getY() {
         return y;
     }
+
+    public abstract void updateAttitude();
 }

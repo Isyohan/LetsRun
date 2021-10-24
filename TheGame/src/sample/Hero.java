@@ -1,12 +1,14 @@
 package sample;
 
 import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 
 public class Hero extends AnimatedThing{
 
-    private final double g=3;
-    private final double f=100000;
-    private final double m=1;
+
+    private final double g=0.1;
+    //private final double f=100000;
+    private final double m=20;
     private double v_x,v_y;
     private double a_x,a_y;
     private double f_x,f_y;
@@ -20,21 +22,46 @@ public class Hero extends AnimatedThing{
         f_y=Fy;
     }
     public void jump(){
-        f_y+=150;
+        if (y>=150+windowSize.getY()){
+            f_y+=100;
+        }
     }
+
+    @Override
+    public void updateAttitude() {
+        if (v_y>=0.1){
+            attitute=Attitude.JUMPING_DOWN;
+        }
+        else if (v_y<=-0.1){
+            attitute=Attitude.JUMPING_UP;
+        }
+        else{
+            attitute=Attitude.RUNNING;
+        }
+    }
+
+
 
     @Override
     public void update(double t) {
         super.update(t);
+        updateAttitude();
 
-        a_y=(g-f_y-v_y/f)/m;
+        //a_y=(g-f_y-v_y/f)/m;
+        a_y=g-f_y/m;
         v_y+=a_y;
         y+=v_y;
         if (y>150+windowSize.getY()){
+            if (v_y>0){
+                v_y=0;
+            }
             y=150+windowSize.getY();
         }
+        //System.out.print(v_y);
+        //v_y=0;
+        System.out.print("\t"+v_y+"\n");
+
         v_x=5;
-        v_y=0;
         x+=v_x;
         setForces(0,0);
     }
