@@ -26,6 +26,14 @@ public class Hero extends AnimatedThing{
             f_y+=100;
         }
     }
+    public void speed_var(double var){
+        if (v_x+var>0) {
+            v_x += var;
+        }
+    }
+    public void setSpeedx(double vx){
+        v_x=vx;
+    }
 
     @Override
     public void updateAttitude() {
@@ -58,7 +66,6 @@ public class Hero extends AnimatedThing{
             y=150+windowSize.getY();
         }
 
-        v_x=5;
         x+=v_x;
         setForces(0,0);
     }

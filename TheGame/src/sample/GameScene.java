@@ -1,11 +1,13 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 public class GameScene extends Scene {
@@ -14,6 +16,7 @@ public class GameScene extends Scene {
     Camera camera;
     staticThing left,right;
     Hero hero;
+    private final double InitialSpeed=1;
 
     public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam,Hero hero) {
         super(pane,v,v1,b);
@@ -41,13 +44,27 @@ public class GameScene extends Scene {
             pane.getChildren().add(lifeslist[i]);
         }
         this.hero=hero;
+        this.hero.setSpeedx(InitialSpeed);
         pane.getChildren().add(this.hero.getImageView());
 
         this.setOnMouseClicked(event -> {
             hero.jump();
         });
-        this.setOnKeyPressed(keyEvent -> {
-            hero.jump();
+        this.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                String key=keyEvent.getCode().toString();
+                if (key.equals("SPACE")){
+                    hero.jump();
+                }
+                if(key.equals("D")){
+                    hero.speed_var(2);
+                }
+                if (key.equals("Q")){
+                    hero.speed_var(-2);
+                }
+
+            }
         });
 
 
