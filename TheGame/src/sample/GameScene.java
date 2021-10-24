@@ -10,12 +10,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+
 public class GameScene extends Scene {
     int numberOfLives=3;
     int rep=1;
     Camera camera;
     staticThing left,right;
     Hero hero;
+    Foe foe;
+    ArrayList<Foe> Foes;
     private final double InitialSpeed=1;
 
     public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam,Hero hero) {
@@ -43,6 +47,14 @@ public class GameScene extends Scene {
             lifeslist[i].setViewport(new Rectangle2D(0,0,48,48));
             pane.getChildren().add(lifeslist[i]);
         }
+        Foes = new ArrayList<>();
+        Foes.add(new Foe(50,50));
+        Foes.add(new Foe(150,50));
+        for(Foe foe :Foes){
+            //pane.getChildren().add(foe.getImageView());
+        }
+
+
         this.hero=hero;
         this.hero.setSpeedx(InitialSpeed);
         pane.getChildren().add(this.hero.getImageView());
@@ -50,11 +62,11 @@ public class GameScene extends Scene {
         this.setOnMouseClicked(event -> {
             hero.jump();
         });
-        this.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        this.setOnKeyPressed(new EventHandler<>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 String key=keyEvent.getCode().toString();
-                if (key.equals("SPACE")){
+                if (key.equals("SPACE") || key.equals("Z")){
                     hero.jump();
                 }
                 if(key.equals("D")){
