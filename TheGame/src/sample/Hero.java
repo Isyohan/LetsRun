@@ -27,12 +27,15 @@ public class Hero extends AnimatedThing{
         }
     }
     public void speed_var(double var){
-        if (v_x+var>=-1) {   //>=0
-            v_x += var;
-        }
+        v_x += var;
+
+
     }
     public void forcex_var(double f_var){
         f_x+=f_var;
+        if (v_x<-1){
+            v_x=-1;
+        }
     }
     public void setSpeedx(double vx){
         v_x=vx;
