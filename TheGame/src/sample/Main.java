@@ -21,10 +21,10 @@ public class Main extends Application {
         Group root=new Group();
         Pane pane=new Pane(root);
 
-        Camera cam=new Camera(500,200);
-        Hero hero=new Hero(0,0);
+        Camera cam=new Camera(100,0);
+        Hero hero=new Hero(100,0);
 
-        GameScene gameScene=new GameScene(pane,800,200,true,cam,hero);
+        GameScene gameScene=new GameScene(pane,800,300,true,cam,hero);
 
         primaryStage.setScene(gameScene);
         primaryStage.show();

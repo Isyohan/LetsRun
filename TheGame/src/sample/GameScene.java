@@ -22,7 +22,7 @@ public class GameScene extends Scene {
     staticThing left,right;
     Hero hero;
     ArrayList<Foe> Foes;
-    private final double InitialSpeed=1;
+    private final double InitialSpeed=0;
 
     public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam,Hero hero) {
         super(pane,v,v1,b);
@@ -100,10 +100,14 @@ public class GameScene extends Scene {
             right.getImageView().setX(800 * (rep-1) - camera.getX());
             left.getImageView().setX(800 * (rep) - camera.getX());
         }
-
-
+        //ALED
         hero.getImageView().setX(hero.getX()-camera.getX());
         hero.getImageView().setY(hero.getY()-camera.getY());
+
+
+
+        System.out.println("POS "+(hero.getX()-camera.getX())+"\tvitesse :");
+
 
         for(Foe foe:Foes){
             foe.getImageView().setX(foe.getX()-camera.getX());

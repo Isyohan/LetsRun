@@ -43,6 +43,7 @@ public abstract class AnimatedThing {
     }
     public void update(double t){
         index=(int) ((t%(indexMax*duration))/duration);
+
         if(attitute==Attitude.RUNNING){
 
 
