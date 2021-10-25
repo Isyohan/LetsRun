@@ -65,7 +65,7 @@ public class Hero extends AnimatedThing{
         updateAttitude();
 
         //a_y=(g-f_y-v_y/f)/m;
-        a_y = g - f_y / m;
+        a_y =( g - f_y / m);
         v_y += a_y;
         y += v_y;
         if (y > 150 + windowSize.getY()) {

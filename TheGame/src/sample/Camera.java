@@ -41,8 +41,8 @@ public class Camera {
         double y_hero=hero.getY();
         double x_on_screen=100;
         double y_on_screen=50;
-        double c1=k/m;
-        double c2=f/m;
+        double c1=2*k/m;
+        double c2=2*f/m;
 
         a_x=c1*(x_hero-x_on_screen-x)-c2*v_x;
         v_x+=a_x;

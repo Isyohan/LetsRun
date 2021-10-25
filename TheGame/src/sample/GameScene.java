@@ -114,8 +114,7 @@ public class GameScene extends Scene {
         }
 
 
-        camera.update(t,hero);
-        hero.update(t);
+
 
 
 
