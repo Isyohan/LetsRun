@@ -27,9 +27,12 @@ public class Hero extends AnimatedThing{
         }
     }
     public void speed_var(double var){
-        if (v_x+var>=0) {
+        if (v_x+var>=-1) {   //>=0
             v_x += var;
         }
+    }
+    public void forcex_var(double f_var){
+        f_x+=f_var;
     }
     public void setSpeedx(double vx){
         v_x=vx;
@@ -68,9 +71,10 @@ public class Hero extends AnimatedThing{
             }
             y = 150 + windowSize.getY();
         }
-
+        a_x=f_x/m;
+        v_x+=a_x;
         x += v_x;
-
+        //System.out.println(v_x);
         setForces(0, 0);
     }
 }

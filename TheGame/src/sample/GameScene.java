@@ -6,9 +6,12 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.*;
 
 import java.util.ArrayList;
 
@@ -50,7 +53,7 @@ public class GameScene extends Scene {
         Foes.add(new Foe(1000,300));
         Foes.add(new Foe(600,300));
         for(Foe foe :Foes){
-            pane.getChildren().add(foe.getImageView());
+            //pane.getChildren().add(foe.getImageView());
         }
 
 
@@ -65,13 +68,16 @@ public class GameScene extends Scene {
                 hero.jump();
             }
             if(key.equals("D")){
-                hero.speed_var(1);
+                //hero.speed_var(1);
+                hero.forcex_var(100);
             }
             if (key.equals("Q")){
-                hero.speed_var(-1);
+                //hero.speed_var(-1);
+                hero.forcex_var(-100);
             }
 
         });
+
 
 
 
@@ -102,10 +108,10 @@ public class GameScene extends Scene {
         for(Foe foe:Foes){
             foe.getImageView().setX(foe.getX()-camera.getX());
             foe.getImageView().setY(foe.getY()-camera.getY());
+
+            //System.out.println(hero.hitbox+"\t"+foe.hitbox);
+
         }
-
-
-
 
 
         camera.update(t,hero);

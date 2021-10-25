@@ -21,19 +21,17 @@ public class Main extends Application {
         Group root=new Group();
         Pane pane=new Pane(root);
 
-        Camera cam=new Camera(0,0);
+        Camera cam=new Camera(500,200);
         Hero hero=new Hero(0,0);
 
         GameScene gameScene=new GameScene(pane,800,200,true,cam,hero);
 
-
         primaryStage.setScene(gameScene);
-
         primaryStage.show();
 
+
+
         final long startNanoTime = System.nanoTime();
-
-
         AnimationTimer timer=new AnimationTimer() {
             @Override
             public void handle(long time) {

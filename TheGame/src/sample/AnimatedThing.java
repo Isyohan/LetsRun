@@ -34,6 +34,7 @@ public abstract class AnimatedThing {
         this.y=y;
         this.imageView.setX(x);
         this.imageView.setY(y);
+        this.hitbox=new Rectangle2D(x,y,this.windowSize.getX(),this.windowSize.getY());
 
     }
 
@@ -43,7 +44,11 @@ public abstract class AnimatedThing {
     public void update(double t){
         index=(int) ((t%(indexMax*duration))/duration);
         if(attitute==Attitude.RUNNING){
+
+
             this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
+
+
         }else if (attitute==Attitude.JUMPING_UP){
             this.imageView.setViewport(new Rectangle2D(offset,160,windowSize.getX()+offset,windowSize.getY()));
         }else if(attitute==Attitude.JUMPING_DOWN){
@@ -51,6 +56,7 @@ public abstract class AnimatedThing {
         }else if(attitute==Attitude.IDLE){
             this.imageView.setViewport(new Rectangle2D(0,0,windowSize.getX()+offset,windowSize.getY()));
         }
+
     }
 
     public double getX() {
@@ -62,4 +68,8 @@ public abstract class AnimatedThing {
     }
 
     public abstract void updateAttitude();
+
+    public boolean Interserct(Rectangle2D hitbox2){
+        return hitbox.intersects(hitbox2);
+    }
 }
