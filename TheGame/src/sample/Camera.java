@@ -40,7 +40,7 @@ public class Camera {
         double x_hero=hero.getX();
         double y_hero=hero.getY();
         double x_on_screen=100;
-        double y_on_screen=50;
+        double y_on_screen=150;
         double c1=k/m;
         double c2=f/m;
 

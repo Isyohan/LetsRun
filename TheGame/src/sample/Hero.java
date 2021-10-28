@@ -6,16 +6,22 @@ import javafx.geometry.Rectangle2D;
 public class Hero extends AnimatedThing{
 
 
-    private final double g=0.1;
+    protected final int maxNumberOfLives =3;
+    protected int numberOfLives =maxNumberOfLives;
+    private final double g=0.2;
     //private final double f=100000;
     private final double m=20;
     private double v_x,v_y;
     private double a_x,a_y;
     private double f_x,f_y;
-    private int y_min=150;
+    protected final int yGround=150;
 
     public Hero(double x,double y){
         super("img/heros.png",x,y,new Point2D(75,100),5,0.075,10);
+    }
+
+    public void ouch(){
+        numberOfLives--;
     }
 
     public void setForces(double Fx,double Fy){
@@ -23,7 +29,7 @@ public class Hero extends AnimatedThing{
         f_y=Fy;
     }
     public void jump(){
-        if (y>=150+windowSize.getY()){
+        if (y>=yGround+windowSize.getY()){
             f_y+=125;
         }
     }
@@ -66,11 +72,11 @@ public class Hero extends AnimatedThing{
         a_y =( g - f_y / m);
         v_y += a_y;
         y += v_y;
-        if (y > y_min + windowSize.getY()) {
+        if (y > yGround + windowSize.getY()) {
             if (v_y > 0) {
                 v_y = 0;
             }
-            y = y_min + windowSize.getY();
+            y = yGround + windowSize.getY();
         }
         a_x=f_x/m;
         v_x+=a_x;

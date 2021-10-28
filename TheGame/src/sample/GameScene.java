@@ -13,16 +13,22 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class GameScene extends Scene {
-    int numberOfLives=3;
+    protected boolean end=false;
     int rep=1;
     Camera camera;
     staticThing left,right;
     Hero hero;
     ArrayList<Foe> Foes;
-    private final double InitialSpeed=0;
+    private final double InitialSpeed=1;
+
+    private final int desertSizeX=800;
+    private final int desertSizeY=400;
+
+
 
     public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam,Hero hero) {
         super(pane,v,v1,b);
@@ -32,14 +38,19 @@ public class GameScene extends Scene {
         this.left=new staticThing("img/desert.png",0,0);
         //this.left=new staticThing("img/desert.png",0,0);
 
-        left.getImageView().setViewport(new Rectangle2D(0,0,800,400));
+        left.getImageView().setViewport(new Rectangle2D(0,0,desertSizeX,desertSizeY));
         pane.getChildren().add(left.getImageView());
 
-        this.right=new staticThing("img/desert.png",800,0);
+        this.right=new staticThing("img/desert.png",desertSizeX,0);
         //this.right=new staticThing("img/desert.png",800,0);
 
-        right.getImageView().setViewport(new Rectangle2D(0,0,800,400));
+        right.getImageView().setViewport(new Rectangle2D(0,0,desertSizeX,desertSizeY));
         pane.getChildren().add(right.getImageView());
+
+        this.hero=hero;
+        int numberOfLives=hero.numberOfLives;
+        int maxNumberOfLives=hero.maxNumberOfLives;
+
 
         ImageView[]  lifeslist=new ImageView[numberOfLives];
         for(int i=0;i<numberOfLives;i++){
@@ -49,15 +60,10 @@ public class GameScene extends Scene {
             lifeslist[i].setViewport(new Rectangle2D(0,0,48,48));
             pane.getChildren().add(lifeslist[i]);
         }
-        Foes = new ArrayList<>();
-        Foes.add(new Foe(1000,300));
-        Foes.add(new Foe(600,300));
-        for(Foe foe :Foes){
-            //pane.getChildren().add(foe.getImageView());
-        }
 
 
-        this.hero=hero;
+
+
         this.hero.setSpeedx(InitialSpeed);
         pane.getChildren().add(this.hero.getImageView());
 
@@ -78,27 +84,38 @@ public class GameScene extends Scene {
 
         });
 
+        Foes = new ArrayList<>();
+        Foes.add(new Foe(1000,300));
+        Foes.add(new Foe(600,300));
+        Foes.add(new Foe(1400,300));
+        for(Foe foe :Foes){
+            pane.getChildren().add(foe.getImageView());
+        }
+
 
 
 
     }
 
     public void update(double t){
+
+
+
         right.getImageView().setY(-camera.getY());
         left.getImageView().setY(-camera.getY());
 
 
-        if(camera.getX()>800*rep) {
+        if(camera.getX()>desertSizeX*rep) {
             rep+=1;
         }
         if (rep % 2 == 1) {
-            left.getImageView().setX(800 * (rep-1) - camera.getX());
-            right.getImageView().setX(800 * (rep) - camera.getX());
+            left.getImageView().setX(desertSizeX * (rep-1) - camera.getX());
+            right.getImageView().setX(desertSizeX * (rep) - camera.getX());
 
         }
         else{
-            right.getImageView().setX(800 * (rep-1) - camera.getX());
-            left.getImageView().setX(800 * (rep) - camera.getX());
+            right.getImageView().setX(desertSizeX * (rep-1) - camera.getX());
+            left.getImageView().setX(desertSizeX * (rep) - camera.getX());
         }
         //ALED
         hero.getImageView().setX(hero.getX()-camera.getX());
@@ -106,22 +123,22 @@ public class GameScene extends Scene {
 
 
 
-        System.out.println("POS "+(hero.getX()-camera.getX())+"\tvitesse :");
 
 
         for(Foe foe:Foes){
             foe.getImageView().setX(foe.getX()-camera.getX());
             foe.getImageView().setY(foe.getY()-camera.getY());
+            if (hero.Interserct(foe.hitbox)){
+                foe.touched(hero);
+                //System.out.println(hero.numberOfLives);
+            }
 
-            //System.out.println(hero.hitbox+"\t"+foe.hitbox);
 
         }
-
-
-
-
-
-
+        if (hero.numberOfLives==0){
+            getWindow().hide();
+        }
 
     }
+
 }

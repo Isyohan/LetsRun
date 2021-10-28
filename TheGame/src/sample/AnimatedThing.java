@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class AnimatedThing {
-    enum Attitude{JUMPING_UP,JUMPING_DOWN,RUNNING,IDLE}
+    enum Attitude{JUMPING_UP,JUMPING_DOWN,RUNNING,IDLE,DEAD}
     protected double x,y;
 
     protected ImageView imageView;
@@ -43,6 +43,7 @@ public abstract class AnimatedThing {
     }
     public void update(double t){
         index=(int) ((t%(indexMax*duration))/duration);
+        this.hitbox= new Rectangle2D(this.getX(), this.getY(), this.windowSize.getX(), this.windowSize.getY());
 
         if(attitute==Attitude.RUNNING){
 

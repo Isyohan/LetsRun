@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    protected final int gameSizeX=800;
+    protected final int gameSizeY=300;
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("The game");
@@ -24,7 +28,7 @@ public class Main extends Application {
         Camera cam=new Camera(100,0);
         Hero hero=new Hero(100,0);
 
-        GameScene gameScene=new GameScene(pane,800,300,true,cam,hero);
+        GameScene gameScene=new GameScene(pane,gameSizeX,gameSizeY,true,cam,hero);
 
         primaryStage.setScene(gameScene);
         primaryStage.show();

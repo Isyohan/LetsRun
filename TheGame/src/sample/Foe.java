@@ -9,6 +9,7 @@ public class Foe extends AnimatedThing{
     private double v_x,v_y;
     private double a_x,a_y;
     private double f_x,f_y;
+    private boolean touched;
 
 
 
@@ -21,6 +22,17 @@ public class Foe extends AnimatedThing{
     @Override
     public void updateAttitude() {
 
+    }
+    public void touched(Hero hero){
+        if (attitute!=Attitude.DEAD) {
+            attitute = Attitude.DEAD;
+            hero.ouch();
+            if (hero.numberOfLives!=0){
+                System.out.println("Touché !  nb de vie : " + hero.numberOfLives);
+            }else{
+                System.out.println("GAME OVER");
+            }
+        }
     }
 
     @Override
