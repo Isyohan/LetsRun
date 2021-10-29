@@ -29,6 +29,8 @@ public class GameScene extends Scene {
     private final int desertSizeX=800;
     private final int desertSizeY=400;
 
+    private final int numberOfEnemy=1000;
+
 
 
     public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam,Hero hero) {
@@ -98,10 +100,10 @@ public class GameScene extends Scene {
         }
 
         Foes = new ArrayList<>();
-        Foes.add(new Foe(1000,300));
-        Foes.add(new Foe(600,300));
-        Foes.add(new Foe(1400,300));
-        for(Foe foe :Foes){
+
+        for (int i=0;i<numberOfEnemy;i++){
+            Foe foe=new Foe(1000*i,300);
+            Foes.add(foe);
             pane.getChildren().add(foe.getImageView());
         }
 

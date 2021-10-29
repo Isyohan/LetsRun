@@ -14,7 +14,9 @@ public class Foe extends AnimatedThing{
 
 
     public Foe(double x,double y){
+
         super("img/enemy.png",x,y,new Point2D(50,50),0,0,0);
+        imageView.setViewport(new Rectangle2D( 0,0,50,50));
     }
 
 
