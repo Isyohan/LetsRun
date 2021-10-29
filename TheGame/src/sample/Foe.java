@@ -14,7 +14,7 @@ public class Foe extends AnimatedThing{
 
 
     public Foe(double x,double y){
-        super("img/Foe.png",x,y,new Point2D(50,50),0,0,0);
+        super("img/enemy.png",x,y,new Point2D(50,50),0,0,0);
     }
 
 

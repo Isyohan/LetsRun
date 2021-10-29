@@ -23,6 +23,7 @@ public class GameScene extends Scene {
     staticThing left,right;
     Hero hero;
     ArrayList<Foe> Foes;
+    ArrayList<Heart> Life;
     private final double InitialSpeed=1;
 
     private final int desertSizeX=800;
@@ -51,7 +52,7 @@ public class GameScene extends Scene {
         int numberOfLives=hero.numberOfLives;
         int maxNumberOfLives=hero.maxNumberOfLives;
 
-
+        /*
         ImageView[]  lifeslist=new ImageView[numberOfLives];
         for(int i=0;i<numberOfLives;i++){
             lifeslist[i]=new ImageView("img/heart.png");
@@ -60,7 +61,7 @@ public class GameScene extends Scene {
             lifeslist[i].setViewport(new Rectangle2D(0,0,48,48));
             pane.getChildren().add(lifeslist[i]);
         }
-
+        */
 
 
 
@@ -83,6 +84,18 @@ public class GameScene extends Scene {
             }
 
         });
+
+        Life = new ArrayList<>();
+        Life.add(new Heart(0));
+        Life.add(new Heart(1));
+        Life.add(new Heart(2));
+        for (Heart heart:Life){
+            heart.getImageView().setViewport(new Rectangle2D(0,0,heart.sizeX,heart.sizeY));
+
+            heart.getImageView().setX(heart.x);
+            heart.getImageView().setY(0);
+            pane.getChildren().add(heart.getImageView());
+        }
 
         Foes = new ArrayList<>();
         Foes.add(new Foe(1000,300));
@@ -120,6 +133,13 @@ public class GameScene extends Scene {
         //ALED
         hero.getImageView().setX(hero.getX()-camera.getX());
         hero.getImageView().setY(hero.getY()-camera.getY());
+
+
+        for(Heart heart:Life){
+            if (heart.getIndex()+1> hero.numberOfLives){
+                heart.getImageView().setViewport(new Rectangle2D(heart.sizeX,0,heart.sizeX,heart.sizeY));
+            }
+        }
 
 
 
