@@ -29,7 +29,7 @@ public class GameScene extends Scene {
     private final int desertSizeX=800;
     private final int desertSizeY=400;
 
-    private final int numberOfEnemy=1000;
+    private final int numberOfEnemy=3;
 
 
 
@@ -102,7 +102,9 @@ public class GameScene extends Scene {
         Foes = new ArrayList<>();
 
         for (int i=0;i<numberOfEnemy;i++){
-            Foe foe=new Foe(1000*i,300);
+            double x= Math.random()*2000-1000;
+            Foe foe=new Foe(1000*i+x,300);
+            System.out.println(foe.getX());
             Foes.add(foe);
             pane.getChildren().add(foe.getImageView());
         }
@@ -159,6 +161,9 @@ public class GameScene extends Scene {
         }
         if (hero.numberOfLives==0){
             getWindow().hide();
+        }
+        if (hero.getX()>numberOfEnemy*1000){
+            System.out.println("C'est WIN !!");
         }
 
     }
