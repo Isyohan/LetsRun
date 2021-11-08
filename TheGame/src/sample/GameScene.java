@@ -104,7 +104,7 @@ public class GameScene extends Scene {
         for (int i=0;i<numberOfEnemyMax;i++){
             double x= Math.random()*2000-1000;
             if (1000*i+x>500) {
-                Foe foe = new Foe(1000 * i + x, 300);
+                Foe foe = new Foe(1000 * i + x, 0);
                 System.out.println(foe.getX());
                 Foes.add(foe);
                 pane.getChildren().add(foe.getImageView());
@@ -152,6 +152,7 @@ public class GameScene extends Scene {
 
 
         for(Foe foe:Foes){
+            foe.update(t);
             foe.getImageView().setX(foe.getX()-camera.getX());
             foe.getImageView().setY(foe.getY()-camera.getY());
             if (hero.Interserct(foe.hitbox)){

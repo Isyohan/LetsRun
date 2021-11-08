@@ -10,7 +10,7 @@ public class Hero extends AnimatedThing{
     protected int numberOfLives =maxNumberOfLives;
     private final double g=0.2;
     //private final double f=100000;
-    private final double m=20;
+    private final double m=15;
     private double v_x,v_y;
     private double a_x,a_y;
     private double f_x,f_y;
