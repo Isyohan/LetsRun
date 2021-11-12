@@ -25,14 +25,12 @@ public class GameScene extends Scene {
     Hero hero;
     ArrayList<Foe> Foes;
     ArrayList<Heart> Life;
-    Canvas canvas;
-    double score;
     private final double InitialSpeed=1;
 
     private final int desertSizeX=800;
     private final int desertSizeY=400;
 
-    private final int numberOfEnemyMax=30;
+    protected static final int numberOfEnemyMax=30;
 
 
 
@@ -114,16 +112,6 @@ public class GameScene extends Scene {
             }
         }
 
-        score=hero.getX();
-
-        Canvas canvas=new Canvas(pane.getWidth(),pane.getHeight());
-        System.out.println(pane.getWidth()+" "+pane.getHeight());
-        pane.getChildren().add(canvas);
-        GraphicsContext gc=canvas.getGraphicsContext2D();
-        gc.setFill(Color.RED);
-        gc.setFont(Font.font(30));
-        String s="Score : "+(int) score;
-        gc.fillText(s,200,30);
 
 
 
@@ -134,13 +122,6 @@ public class GameScene extends Scene {
     }
 
     public void update(double t){
-
-        score=(int) hero.getX();
-        System.out.println(score);
-
-
-
-
 
         right.getImageView().setY(-camera.getY());
         left.getImageView().setY(-camera.getY());
@@ -194,4 +175,7 @@ public class GameScene extends Scene {
 
     }
 
+    public static int getNumberOfEnemyMax() {
+        return numberOfEnemyMax;
+    }
 }

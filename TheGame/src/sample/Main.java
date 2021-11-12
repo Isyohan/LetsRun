@@ -13,12 +13,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    enum EtatJeu{GAME,WIN,LOSE}
 
     protected final int gameSizeX=800;
     protected final int gameSizeY=300;
+    EtatJeu etatJeu=EtatJeu.GAME;
 
 
     @Override
@@ -36,6 +40,13 @@ public class Main extends Application {
         primaryStage.setScene(gameScene);
         primaryStage.show();
 
+        Canvas canvas=new Canvas(pane.getWidth(),pane.getHeight());
+        //System.out.println(pane.getWidth()+" "+pane.getHeight());
+        pane.getChildren().add(canvas);
+        GraphicsContext gc=canvas.getGraphicsContext2D();
+        gc.setFill(Color.RED);
+        gc.setFont(Font.font(30));
+
 
 
         final long startNanoTime = System.nanoTime();
@@ -43,10 +54,24 @@ public class Main extends Application {
             @Override
             public void handle(long time) {
                 double t = (time - startNanoTime) / 1000000000.0;
+                gc.clearRect(0,0,pane.getWidth(),pane.getHeight());
 
                 hero.update(t);
                 cam.update(t,hero);
                 gameScene.update(t);
+
+                int score;
+
+                score=(int) hero.getX();
+                String s="Score : "+(int) score;
+                gc.fillText(s,200,30);
+
+                if (hero.numberOfLives==0){
+                    etatJeu=EtatJeu.LOSE;
+                }else if (hero.getX()>GameScene.getNumberOfEnemyMax()*1000){
+                    etatJeu=EtatJeu.WIN;
+                }
+
 
                 //System.out.println(cam.getX());
 
