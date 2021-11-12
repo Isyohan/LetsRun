@@ -7,6 +7,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -26,9 +28,10 @@ public class Main extends Application {
         Pane pane=new Pane(root);
 
         Camera cam=new Camera(100,0);
-        Hero hero=new Hero(100,0);
+        Hero hero=new Hero(0,0);
 
         GameScene gameScene=new GameScene(pane,gameSizeX,gameSizeY,true,cam,hero);
+
 
         primaryStage.setScene(gameScene);
         primaryStage.show();
@@ -44,6 +47,7 @@ public class Main extends Application {
                 hero.update(t);
                 cam.update(t,hero);
                 gameScene.update(t);
+
                 //System.out.println(cam.getX());
 
             }

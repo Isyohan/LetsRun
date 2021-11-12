@@ -51,7 +51,7 @@ public abstract class AnimatedThing {
             this.imageView.setViewport(new Rectangle2D(index*(windowSize.getX()+offset),0, windowSize.getX()+offset,100));
 
 
-        }else if (attitute==Attitude.JUMPING_UP){
+        } else if (attitute==Attitude.JUMPING_UP){
             this.imageView.setViewport(new Rectangle2D(offset,160,windowSize.getX()+offset,windowSize.getY()));
         }else if(attitute==Attitude.JUMPING_DOWN){
             this.imageView.setViewport(new Rectangle2D(95,160,windowSize.getX()+offset,windowSize.getY()));

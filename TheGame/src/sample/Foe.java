@@ -35,7 +35,7 @@ public class Foe extends AnimatedThing{
 
     }
     public void touched(Hero hero){
-        if (attitute!=Attitude.DEAD) {
+        if (attitute!=Attitude.DEAD ) {
             attitute = Attitude.DEAD;
             hero.ouch();
             if (hero.numberOfLives!=0){

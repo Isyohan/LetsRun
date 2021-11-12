@@ -3,6 +3,9 @@ package sample;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 
+
+import static java.lang.Boolean.*;
+
 public class Hero extends AnimatedThing{
 
 

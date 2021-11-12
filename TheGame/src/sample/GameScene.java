@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.*;
+import javafx.scene.text.Font;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class GameScene extends Scene {
     Hero hero;
     ArrayList<Foe> Foes;
     ArrayList<Heart> Life;
+    Canvas canvas;
+    double score;
     private final double InitialSpeed=1;
 
     private final int desertSizeX=800;
@@ -105,11 +108,25 @@ public class GameScene extends Scene {
             double x= Math.random()*2000-1000;
             if (1000*i+x>500) {
                 Foe foe = new Foe(1000 * i + x, 0);
-                System.out.println(foe.getX());
+                //System.out.println(foe.getX());
                 Foes.add(foe);
                 pane.getChildren().add(foe.getImageView());
             }
         }
+
+        score=hero.getX();
+
+        Canvas canvas=new Canvas(pane.getWidth(),pane.getHeight());
+        System.out.println(pane.getWidth()+" "+pane.getHeight());
+        pane.getChildren().add(canvas);
+        GraphicsContext gc=canvas.getGraphicsContext2D();
+        gc.setFill(Color.RED);
+        gc.setFont(Font.font(30));
+        String s="Score : "+(int) score;
+        gc.fillText(s,200,30);
+
+
+
 
 
 
@@ -117,6 +134,11 @@ public class GameScene extends Scene {
     }
 
     public void update(double t){
+
+        score=(int) hero.getX();
+        System.out.println(score);
+
+
 
 
 
@@ -168,6 +190,7 @@ public class GameScene extends Scene {
         if (hero.getX()>numberOfEnemyMax*1000){
             System.out.println("C'est WIN !!");
         }
+
 
     }
 
