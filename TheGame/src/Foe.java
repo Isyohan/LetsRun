@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
@@ -18,7 +17,7 @@ public class Foe extends AnimatedThing{
 
     public Foe(double x,double y){
 
-        super("img/enemy.png",x,y,new Point2D(50,50),0,0,0);
+        super("enemy.png",x,y,new Point2D(50,50),0,0,0);
         imageView.setViewport(new Rectangle2D( 0,0,50,50));
         /* à finir pour les super enemies
 

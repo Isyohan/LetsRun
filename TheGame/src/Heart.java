@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +12,7 @@ public class Heart {
         index=i;
         y=0;
         x=48*i;
-        imageView=new ImageView(new Image("img/hearts.png"));
+        imageView=new ImageView(new Image("hearts.png"));
     }
 
     public ImageView getImageView() {

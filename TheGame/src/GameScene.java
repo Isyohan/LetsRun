@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
@@ -39,13 +38,13 @@ public class GameScene extends Scene {
         this.camera=cam;
 
 
-        this.left=new staticThing("img/desert.png",0,0);
+        this.left=new staticThing("desert.png",0,0);
         //this.left=new staticThing("img/desert.png",0,0);
 
         left.getImageView().setViewport(new Rectangle2D(0,0,desertSizeX,desertSizeY));
         pane.getChildren().add(left.getImageView());
 
-        this.right=new staticThing("img/desert.png",desertSizeX,0);
+        this.right=new staticThing("desert.png",desertSizeX,0);
         //this.right=new staticThing("img/desert.png",800,0);
 
         right.getImageView().setViewport(new Rectangle2D(0,0,desertSizeX,desertSizeY));

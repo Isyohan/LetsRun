@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;

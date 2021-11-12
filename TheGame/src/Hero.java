@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
@@ -20,7 +19,7 @@ public class Hero extends AnimatedThing{
     protected final int yGround=150;
 
     public Hero(double x,double y){
-        super("img/heros.png",x,y,new Point2D(75,100),5,0.075,10);
+        super("heros.png",x,y,new Point2D(75,100),5,0.075,10);
     }
 
     public void ouch(){

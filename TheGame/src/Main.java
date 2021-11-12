@@ -1,4 +1,3 @@
-package sample;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -63,7 +62,7 @@ public class Main extends Application {
                 int score;
 
                 score=(int) hero.getX();
-                String s="Score : "+(int) score;
+                String s="Score : "+score;
                 gc.fillText(s,200,30);
 
                 if (hero.numberOfLives==0){
