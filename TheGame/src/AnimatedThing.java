@@ -4,8 +4,12 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+
+import static java.lang.Boolean.*;
+
+
 public abstract class AnimatedThing {
-    enum Attitude{JUMPING_UP,JUMPING_DOWN,RUNNING,IDLE,DEAD}
+    enum Attitude{JUMPING_UP,JUMPING_DOWN,RUNNING,IDLE,DEAD,INVINSIBLE}
     protected double x,y;
 
     protected ImageView imageView;
@@ -20,6 +24,8 @@ public abstract class AnimatedThing {
     protected double duration;
     protected Point2D windowSize;
     protected int offset;
+
+    protected boolean invinsibilityOn=FALSE;
 
     public AnimatedThing(String fileName,double x,double y,Point2D windowSize,int indexMax,double duration,int offset){
         this.imageView=new ImageView(new Image(fileName));
@@ -56,6 +62,10 @@ public abstract class AnimatedThing {
             this.imageView.setViewport(new Rectangle2D(95,160,windowSize.getX()+offset,windowSize.getY()));
         }else if(attitute==Attitude.IDLE){
             this.imageView.setViewport(new Rectangle2D(0,0,windowSize.getX()+offset,windowSize.getY()));
+        }
+
+        if (invinsibilityOn && index%2==0){
+            this.imageView.setViewport(new Rectangle2D(300,100,windowSize.getX()+offset,windowSize.getY()));
         }
 
     }

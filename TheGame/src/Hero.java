@@ -18,12 +18,23 @@ public class Hero extends AnimatedThing{
     private double f_x,f_y;
     protected final int yGround=150;
 
+    protected final double invinsibilityTime=5;
+    protected double oldtime=0;
+
+    protected boolean flag=FALSE;
+
     public Hero(double x,double y){
         super("heros.png",x,y,new Point2D(75,100),5,0.075,10);
     }
 
     public void ouch(){
-        numberOfLives--;
+        if (!invinsibilityOn) {
+            numberOfLives--;
+            invinsibilityOn = TRUE;
+            flag=TRUE;
+            System.out.println("Touché !  nb de vie : " + numberOfLives);
+
+        }
     }
 
     public void setForces(double Fx,double Fy){
@@ -57,7 +68,7 @@ public class Hero extends AnimatedThing{
             attitute=Attitude.JUMPING_UP;
         }
         else{
-            attitute=Attitude.RUNNING;
+            attitute = Attitude.RUNNING;
         }
         if (v_x==0){
             attitute=Attitude.IDLE;
@@ -85,6 +96,20 @@ public class Hero extends AnimatedThing{
         x += v_x;
 
         setForces(0, 0);
+        if (invinsibilityOn==TRUE){
+            if (flag){
+                oldtime=t;
+                flag=FALSE;
+                System.out.println("INVINSIBLE");
+
+            }else if (t-oldtime>invinsibilityTime){
+                invinsibilityOn=FALSE;
+                flag=TRUE;
+                System.out.println("PLUS INVINSIBLE");
+
+            }
+
+        }
 
     }
 }

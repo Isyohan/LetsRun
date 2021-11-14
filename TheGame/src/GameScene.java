@@ -111,6 +111,15 @@ public class GameScene extends Scene {
             }
         }
 
+        Foe enemytest1= new Foe(500,0);
+        Foes.add(enemytest1);
+        pane.getChildren().add(enemytest1.getImageView());
+        Foe enemytest2= new Foe(550,0);
+        Foes.add(enemytest2);
+        pane.getChildren().add(enemytest2.getImageView());
+
+
+
 
 
 

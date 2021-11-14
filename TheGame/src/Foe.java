@@ -37,9 +37,7 @@ public class Foe extends AnimatedThing{
         if (attitute!=Attitude.DEAD ) {
             attitute = Attitude.DEAD;
             hero.ouch();
-            if (hero.numberOfLives!=0){
-                System.out.println("Touché !  nb de vie : " + hero.numberOfLives);
-            }else{
+            if (hero.numberOfLives==0 ){
                 System.out.println("GAME OVER");
             }
         }
