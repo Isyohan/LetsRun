@@ -16,11 +16,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Main extends Application {
     enum EtatJeu{GAME,WIN,LOSE}
 
     protected final int gameSizeX=800;
     protected final int gameSizeY=300;
+    protected String affichage;
     EtatJeu etatJeu=EtatJeu.GAME;
 
 
@@ -60,16 +64,30 @@ public class Main extends Application {
                 gameScene.update(t);
 
                 int score;
+                if (etatJeu!=EtatJeu.WIN) {
+                    score = (int) hero.getX();
+                    BigDecimal t2 = new BigDecimal(t);
+                    t2 = t2.setScale(3, RoundingMode.FLOOR);
 
-                score=(int) hero.getX();
-                String s="Score : "+score;
-                gc.fillText(s,200,30);
 
-                if (hero.numberOfLives==0){
-                    etatJeu=EtatJeu.LOSE;
-                }else if (hero.getX()>GameScene.getNumberOfEnemyMax()*1000){
-                    etatJeu=EtatJeu.WIN;
+                    if (hero.numberOfLives == 0) {
+                        etatJeu = EtatJeu.LOSE;
+                        this.stop();
+                    } else if (hero.getX() > GameScene.getNumberOfEnemyMax() * 1000) {
+                        etatJeu = EtatJeu.WIN;
+                        score = GameScene.getNumberOfEnemyMax() * 1000;
+
+                    }
+                    affichage="Score : " + score + "   \tTemps : " + t2;
+                    if (etatJeu==EtatJeu.WIN){
+                        affichage=affichage+" \nVICTOIRE !";
+                    }
+
+
                 }
+                gc.setFill(Color.RED);
+                gc.setFont(Font.font(30));
+                gc.fillText(affichage, 200, 30);
 
 
                 //System.out.println(cam.getX());

@@ -78,7 +78,9 @@ public class GameScene extends Scene {
             }
             if(key.equals("D")){
                 //hero.speed_var(1);
-                hero.forcex_var(100);
+                if (!hero.invinsibilityOn) {
+                    hero.forcex_var(100);
+                }
             }
             if (key.equals("Q")){
                 //hero.speed_var(-1);
@@ -110,13 +112,14 @@ public class GameScene extends Scene {
                 pane.getChildren().add(foe.getImageView());
             }
         }
-
+        /*
         Foe enemytest1= new Foe(500,0);
         Foes.add(enemytest1);
         pane.getChildren().add(enemytest1.getImageView());
         Foe enemytest2= new Foe(550,0);
         Foes.add(enemytest2);
         pane.getChildren().add(enemytest2.getImageView());
+        */
 
 
 
@@ -176,9 +179,7 @@ public class GameScene extends Scene {
         if (hero.numberOfLives==0){
             getWindow().hide();
         }
-        if (hero.getX()>numberOfEnemyMax*1000){
-            System.out.println("C'est WIN !!");
-        }
+
 
 
     }

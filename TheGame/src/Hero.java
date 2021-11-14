@@ -96,6 +96,9 @@ public class Hero extends AnimatedThing{
         x += v_x;
 
         setForces(0, 0);
+        if (v_x<0){
+            v_x=1;
+        }
         if (invinsibilityOn==TRUE){
             if (flag){
                 oldtime=t;
@@ -110,6 +113,7 @@ public class Hero extends AnimatedThing{
             }
 
         }
+
 
     }
 }
