@@ -80,7 +80,7 @@ public abstract class AnimatedThing {
 
     public abstract void updateAttitude();
 
-    public boolean Interserct(Rectangle2D hitbox2){
+    public boolean Intersect(Rectangle2D hitbox2){
         return hitbox.intersects(hitbox2);
     }
 }

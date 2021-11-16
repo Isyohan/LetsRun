@@ -169,7 +169,7 @@ public class GameScene extends Scene {
             foe.update(t);
             foe.getImageView().setX(foe.getX()-camera.getX());
             foe.getImageView().setY(foe.getY()-camera.getY());
-            if (hero.Interserct(foe.hitbox)){
+            if (hero.Intersect(foe.hitbox)){
                 foe.touched(hero);
                 //System.out.println(hero.numberOfLives);
             }
