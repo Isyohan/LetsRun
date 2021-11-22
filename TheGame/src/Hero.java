@@ -17,7 +17,7 @@ public class Hero extends AnimatedThing{
     private double f_x,f_y;
     protected final int yGround=150;
 
-    protected final double invinsibilityTime=1.5;
+    protected final double invincibilityTime=1.5;
     protected double oldtime=0;
 
     protected boolean flag=FALSE;
@@ -27,9 +27,9 @@ public class Hero extends AnimatedThing{
     }
 
     public void ouch(){
-        if (!invinsibilityOn) {
+        if (!invincibilityOn) {
             numberOfLives--;
-            invinsibilityOn = TRUE;
+            invincibilityOn = TRUE;
             flag=TRUE;
         }
     }
@@ -108,12 +108,12 @@ public class Hero extends AnimatedThing{
         if (v_x<0){
             v_x=1;
         }
-        if (invinsibilityOn==TRUE){
+        if (invincibilityOn==TRUE){
             if (flag){
                 oldtime=t;
                 flag=FALSE;
-            }else if (t-oldtime>invinsibilityTime){
-                invinsibilityOn=FALSE;
+            }else if (t-oldtime>invincibilityTime){
+                invincibilityOn=FALSE;
                 flag=TRUE;
             }
         }

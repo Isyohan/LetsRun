@@ -35,7 +35,7 @@ public class Main extends Application {
         Pane pane=new Pane(root);
 
         Camera cam=new Camera(100,0);
-        Hero hero=new Hero(0,0);
+        Hero hero=new Hero(30,0);
 
         GameScene gameScene=new GameScene(pane,gameSizeX,gameSizeY,true,cam,hero);
 

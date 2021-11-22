@@ -60,7 +60,7 @@ public class GameScene extends Scene {
             if (key.equals("SPACE") || key.equals("Z")){
                 hero.jump();
             }
-            if(key.equals("D") && !hero.invinsibilityOn){
+            if(key.equals("D") && !hero.invincibilityOn){
                 hero.forcex_var(100);
             }
             if (key.equals("Q")){

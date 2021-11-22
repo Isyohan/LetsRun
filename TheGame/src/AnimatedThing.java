@@ -25,7 +25,7 @@ public abstract class AnimatedThing {
     protected Point2D windowSize;
     protected int offset;
 
-    protected boolean invinsibilityOn=FALSE;
+    protected boolean invincibilityOn=FALSE;
 
     public AnimatedThing(String fileName,double x,double y,Point2D windowSize,int indexMax,double duration,int offset){
         this.imageView=new ImageView(new Image(fileName));
@@ -64,7 +64,7 @@ public abstract class AnimatedThing {
             this.imageView.setViewport(new Rectangle2D(0,0,windowSize.getX()+offset,windowSize.getY()));
         }
 
-        if (invinsibilityOn && index%2==0){
+        if (invincibilityOn && index%2==0){
             this.imageView.setViewport(new Rectangle2D(300,100,windowSize.getX()+offset,windowSize.getY()));
         }
 
