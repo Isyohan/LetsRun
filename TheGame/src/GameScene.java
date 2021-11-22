@@ -24,7 +24,6 @@ public class GameScene extends Scene {
     Hero hero;
     ArrayList<Foe> Foes;
     ArrayList<Heart> Life;
-    private final double InitialSpeed=1;
 
     private final int desertSizeX=800;
     private final int desertSizeY=400;
@@ -66,8 +65,9 @@ public class GameScene extends Scene {
         */
 
 
+        double initialSpeed = 1;
 
-        this.hero.setSpeedx(InitialSpeed);
+        this.hero.setSpeedx(initialSpeed);
         pane.getChildren().add(this.hero.getImageView());
 
         this.setOnMouseClicked(event -> hero.jump());
@@ -76,15 +76,15 @@ public class GameScene extends Scene {
             if (key.equals("SPACE") || key.equals("Z")){
                 hero.jump();
             }
-            if(key.equals("D")){
-                //hero.speed_var(1);
-                if (!hero.invinsibilityOn) {
-                    hero.forcex_var(100);
-                }
+            if(key.equals("D") && !hero.invinsibilityOn){
+                hero.forcex_var(100);
             }
             if (key.equals("Q")){
-                //hero.speed_var(-1);
                 hero.forcex_var(-100);
+            }
+            if (key.equals("R") && hero.numberOfLives==0){
+                System.out.println("RESET");
+                hero.reset();
             }
 
         });
@@ -107,35 +107,19 @@ public class GameScene extends Scene {
             double x= Math.random()*2000-1000;
             if (1000*i+x>500) {
                 Foe foe = new Foe(1000 * i + x, 0);
-                //System.out.println(foe.getX());
                 Foes.add(foe);
                 pane.getChildren().add(foe.getImageView());
             }
         }
-        /*
-        Foe enemytest1= new Foe(500,0);
-        Foes.add(enemytest1);
-        pane.getChildren().add(enemytest1.getImageView());
-        Foe enemytest2= new Foe(550,0);
-        Foes.add(enemytest2);
-        pane.getChildren().add(enemytest2.getImageView());
-        */
-
-
-
-
-
-
-
-
-
-
     }
 
     public void update(double t){
 
         right.getImageView().setY(-camera.getY());
         left.getImageView().setY(-camera.getY());
+
+        hero.getImageView().setX(hero.getX()-camera.getX());
+        hero.getImageView().setY(hero.getY()-camera.getY());
 
 
         if(camera.getX()>desertSizeX*rep) {
@@ -150,9 +134,6 @@ public class GameScene extends Scene {
             right.getImageView().setX(desertSizeX * (rep-1) - camera.getX());
             left.getImageView().setX(desertSizeX * (rep) - camera.getX());
         }
-        //ALED
-        hero.getImageView().setX(hero.getX()-camera.getX());
-        hero.getImageView().setY(hero.getY()-camera.getY());
 
 
         for(Heart heart:Life){
@@ -161,23 +142,16 @@ public class GameScene extends Scene {
             }
         }
 
-
-
-
-
         for(Foe foe:Foes){
             foe.update(t);
             foe.getImageView().setX(foe.getX()-camera.getX());
             foe.getImageView().setY(foe.getY()-camera.getY());
             if (hero.Intersect(foe.hitbox)){
                 foe.touched(hero);
-                //System.out.println(hero.numberOfLives);
             }
-
-
         }
         if (hero.numberOfLives==0){
-            getWindow().hide();
+            hero.stop();
         }
 
 

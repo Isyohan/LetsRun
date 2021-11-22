@@ -44,7 +44,6 @@ public class Main extends Application {
         primaryStage.show();
 
         Canvas canvas=new Canvas(pane.getWidth(),pane.getHeight());
-        //System.out.println(pane.getWidth()+" "+pane.getHeight());
         pane.getChildren().add(canvas);
         GraphicsContext gc=canvas.getGraphicsContext2D();
         gc.setFill(Color.RED);
@@ -78,9 +77,13 @@ public class Main extends Application {
                         score = GameScene.getNumberOfEnemyMax() * 1000;
 
                     }
-                    affichage="Score : " + score + "   \tTemps : " + t2;
+                    affichage="Accélérer :D , Freiner :Q , Sauter :Z/Espace\n";
+                    affichage+="Score : " + score + "   \tTemps : " + t2;
                     if (etatJeu==EtatJeu.WIN){
-                        affichage=affichage+" \nVICTOIRE !";
+                        affichage=affichage+" \nVICTORY !";
+                    }
+                    if (etatJeu==EtatJeu.LOSE){
+                        affichage=affichage+" \nGAME OVER !\t Press ? to restart";
                     }
 
 
@@ -90,7 +93,6 @@ public class Main extends Application {
                 gc.fillText(affichage, 200, 30);
 
 
-                //System.out.println(cam.getX());
 
             }
 

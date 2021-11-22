@@ -9,7 +9,7 @@ public class Foe extends AnimatedThing{
     private double a_x,a_y;
     private double f_x,f_y;
     private boolean touched;
-    protected final int yGround=250; //=150 pour le enemy =inverse hero
+    protected final int yGround=250;
     private final double g=0.2;
     private final double m=20;
 
@@ -19,12 +19,6 @@ public class Foe extends AnimatedThing{
 
         super("enemy.png",x,y,new Point2D(50,50),0,0,0);
         imageView.setViewport(new Rectangle2D( 0,0,50,50));
-        /* à finir pour les super enemies
-
-        super("img/enemy2.0.png",x,y,new Point2D(75,100),5,0.075,10);
-        this.attitute=Attitude.RUNNING;
-
-         */
     }
 
 

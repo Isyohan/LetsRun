@@ -51,16 +51,6 @@ public class Camera {
 
         v_y+=a_y;
         y+=v_y;
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override

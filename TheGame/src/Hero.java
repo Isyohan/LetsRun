@@ -10,15 +10,14 @@ public class Hero extends AnimatedThing{
 
     protected final int maxNumberOfLives =3;
     protected int numberOfLives =maxNumberOfLives;
-    private final double g=0.2;
-    //private final double f=100000;
+    private final double g=0.3;
     private final double m=15;
     private double v_x,v_y;
     private double a_x,a_y;
     private double f_x,f_y;
     protected final int yGround=150;
 
-    protected final double invinsibilityTime=5;
+    protected final double invinsibilityTime=1.5;
     protected double oldtime=0;
 
     protected boolean flag=FALSE;
@@ -32,8 +31,6 @@ public class Hero extends AnimatedThing{
             numberOfLives--;
             invinsibilityOn = TRUE;
             flag=TRUE;
-            System.out.println("Touché !  nb de vie : " + numberOfLives);
-
         }
     }
 
@@ -46,13 +43,25 @@ public class Hero extends AnimatedThing{
             f_y+=125;
         }
     }
+    public void stop(){
+        v_x=0;
+        v_y=0;
+    }
+    public void reset(){
+        x=0;
+        y=0;
+    }
     public void speed_var(double var){
         v_x += var;
     }
     public void forcex_var(double f_var){
         f_x+=f_var;
-        if (v_x<-1){
-            v_x=-1;
+        if (v_x<0){
+            v_x=1;
+        }
+        int v_max=100;
+        if (v_x>v_max){
+            v_x=v_max;
         }
     }
     public void setSpeedx(double vx){
@@ -103,17 +112,10 @@ public class Hero extends AnimatedThing{
             if (flag){
                 oldtime=t;
                 flag=FALSE;
-                System.out.println("INVINSIBLE");
-
             }else if (t-oldtime>invinsibilityTime){
                 invinsibilityOn=FALSE;
                 flag=TRUE;
-                System.out.println("PLUS INVINSIBLE");
-
             }
-
         }
-
-
     }
 }
