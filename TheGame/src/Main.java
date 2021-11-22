@@ -29,7 +29,7 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage){
         primaryStage.setTitle("Runner By Yohan ISMAËL");
         Group root=new Group();
         Pane pane=new Pane(root);
