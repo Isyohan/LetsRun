@@ -30,21 +30,17 @@ public class GameScene extends Scene {
 
     protected static final int numberOfEnemyMax=30;
 
-
-
     public GameScene(Pane pane,int v,int v1,Boolean b,Camera cam,Hero hero) {
         super(pane,v,v1,b);
         this.camera=cam;
 
 
         this.left=new staticThing("desert.png",0,0);
-        //this.left=new staticThing("img/desert.png",0,0);
 
         left.getImageView().setViewport(new Rectangle2D(0,0,desertSizeX,desertSizeY));
         pane.getChildren().add(left.getImageView());
 
         this.right=new staticThing("desert.png",desertSizeX,0);
-        //this.right=new staticThing("img/desert.png",800,0);
 
         right.getImageView().setViewport(new Rectangle2D(0,0,desertSizeX,desertSizeY));
         pane.getChildren().add(right.getImageView());
@@ -52,18 +48,6 @@ public class GameScene extends Scene {
         this.hero=hero;
         int numberOfLives=hero.numberOfLives;
         int maxNumberOfLives=hero.maxNumberOfLives;
-
-        /*
-        ImageView[]  lifeslist=new ImageView[numberOfLives];
-        for(int i=0;i<numberOfLives;i++){
-            lifeslist[i]=new ImageView("img/heart.png");
-            lifeslist[i].setX(48*i);
-            lifeslist[i].setY(0);
-            lifeslist[i].setViewport(new Rectangle2D(0,0,48,48));
-            pane.getChildren().add(lifeslist[i]);
-        }
-        */
-
 
         double initialSpeed = 1;
 
@@ -82,9 +66,8 @@ public class GameScene extends Scene {
             if (key.equals("Q")){
                 hero.forcex_var(-100);
             }
-            if (key.equals("R") && hero.numberOfLives==0){
-                System.out.println("RESET");
-                hero.reset();
+            if (key.equals("X") && (hero.numberOfLives==0 || hero.getX() > GameScene.getNumberOfEnemyMax() * 1000)){
+                this.getWindow().hide();
             }
 
         });

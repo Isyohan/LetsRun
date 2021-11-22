@@ -30,7 +30,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("The game");
+        primaryStage.setTitle("Runner By Yohan ISMAËL");
         Group root=new Group();
         Pane pane=new Pane(root);
 
@@ -63,7 +63,7 @@ public class Main extends Application {
                 gameScene.update(t);
 
                 int score;
-                if (etatJeu!=EtatJeu.WIN) {
+                if (etatJeu!=EtatJeu.WIN && etatJeu!=EtatJeu.LOSE) {
                     score = (int) hero.getX();
                     BigDecimal t2 = new BigDecimal(t);
                     t2 = t2.setScale(3, RoundingMode.FLOOR);
@@ -71,22 +71,19 @@ public class Main extends Application {
 
                     if (hero.numberOfLives == 0) {
                         etatJeu = EtatJeu.LOSE;
-                        this.stop();
                     } else if (hero.getX() > GameScene.getNumberOfEnemyMax() * 1000) {
                         etatJeu = EtatJeu.WIN;
                         score = GameScene.getNumberOfEnemyMax() * 1000;
-
                     }
                     affichage="Accélérer :D , Freiner :Q , Sauter :Z/Espace\n";
-                    affichage+="Score : " + score + "   \tTemps : " + t2;
+                    affichage+="Score : " + score+"\t";
+                    affichage+="Temps : " + t2+"\t";
                     if (etatJeu==EtatJeu.WIN){
-                        affichage=affichage+" \nVICTORY !";
+                        affichage=affichage+" \nVICTORY !\t Press X to exit";
                     }
                     if (etatJeu==EtatJeu.LOSE){
-                        affichage=affichage+" \nGAME OVER !\t Press ? to restart";
+                        affichage=affichage+" \nGAME OVER !\t Press X to exit";
                     }
-
-
                 }
                 gc.setFill(Color.RED);
                 gc.setFont(Font.font(30));
