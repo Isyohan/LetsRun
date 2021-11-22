@@ -39,7 +39,6 @@ public class Main extends Application {
 
         GameScene gameScene=new GameScene(pane,gameSizeX,gameSizeY,true,cam,hero);
 
-
         primaryStage.setScene(gameScene);
         primaryStage.show();
 
@@ -48,8 +47,6 @@ public class Main extends Application {
         GraphicsContext gc=canvas.getGraphicsContext2D();
         gc.setFill(Color.RED);
         gc.setFont(Font.font(30));
-
-
 
         final long startNanoTime = System.nanoTime();
         AnimationTimer timer=new AnimationTimer() {
@@ -67,7 +64,6 @@ public class Main extends Application {
                     score = (int) hero.getX();
                     BigDecimal t2 = new BigDecimal(t);
                     t2 = t2.setScale(3, RoundingMode.FLOOR);
-
 
                     if (hero.numberOfLives == 0) {
                         etatJeu = EtatJeu.LOSE;
@@ -88,9 +84,6 @@ public class Main extends Application {
                 gc.setFill(Color.RED);
                 gc.setFont(Font.font(30));
                 gc.fillText(affichage, 200, 30);
-
-
-
             }
 
         };timer.start();

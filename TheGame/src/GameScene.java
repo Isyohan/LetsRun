@@ -78,7 +78,6 @@ public class GameScene extends Scene {
         Life.add(new Heart(2));
         for (Heart heart:Life){
             heart.getImageView().setViewport(new Rectangle2D(0,0,heart.sizeX,heart.sizeY));
-
             heart.getImageView().setX(heart.x);
             heart.getImageView().setY(0);
             pane.getChildren().add(heart.getImageView());
@@ -136,9 +135,6 @@ public class GameScene extends Scene {
         if (hero.numberOfLives==0){
             hero.stop();
         }
-
-
-
     }
 
     public static int getNumberOfEnemyMax() {
